@@ -36,6 +36,15 @@ public class Enemy {
     }  
 
     public void attack (Hero hero) {
+        System.out.println("Enemy attacked " + hero.getName() + " with " + this.damage + " damage!");
         hero.setHealth(hero.getHealth() - this.damage);
+    }
+
+        public boolean isAlive(){
+        return health > 0;
+    }
+
+    public String toString() {
+        return "Level: " + this.level + " | Damage: " + this.damage + " | Health: " + this.health;
     }
 }

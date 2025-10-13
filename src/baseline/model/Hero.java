@@ -35,5 +35,9 @@ public abstract class Hero {
         this.health = health;
     }
 
+    public boolean isAlive(){
+        return health > 0;
+    }
+
     public abstract void attack(Enemy enemy);
 }
