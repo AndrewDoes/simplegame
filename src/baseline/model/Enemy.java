@@ -1,4 +1,4 @@
-package model;
+package baseline.model;
 
 public class Enemy {
     private int level;
