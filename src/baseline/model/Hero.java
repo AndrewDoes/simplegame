@@ -4,11 +4,13 @@ public abstract class Hero {
     private String name;
     private int damage;
     private int health;
+    private int level;
     
     public Hero(String name, int damage, int health) {
         this.name = name;
         this.damage = damage;
         this.health = health;
+        this.level = 1;
     }
     
     public String getName() {
@@ -39,5 +41,14 @@ public abstract class Hero {
         return health > 0;
     }
 
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
     public abstract void attack(Enemy enemy);
+    public abstract String toString();
 }

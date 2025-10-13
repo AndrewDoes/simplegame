@@ -1,14 +1,18 @@
 package baseline.model;
 
 public class Enemy {
+    private String name;
     private int level;
     private int damage = 10;
     private int health = 50;
+    private String dungeon;
 
-    public Enemy(int level) {
+    public Enemy(String name, String dungeon, int level, int damage, int health) {
         this.level = level;
-        this.damage = damage*level;
-        this.health = health*level;
+        this.name = name;
+        this.dungeon = dungeon;
+        this.damage = damage;
+        this.health = health;
     }
 
     public int getLevel() {
@@ -44,7 +48,24 @@ public class Enemy {
         return health > 0;
     }
 
-    public String toString() {
-        return "Level: " + this.level + " | Damage: " + this.damage + " | Health: " + this.health;
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDungeon() {
+        return dungeon;
+    }
+
+    public void setDungeon(String dungeon) {
+        this.dungeon = dungeon;
+    }
+
+    public String toString(){
+        return "Enemy name: " + this.getName() + " | Enemy dungeon: " + this.getDungeon()
+                        + " | Enemy Level: " + this.getLevel() + " | HP: " + this.getHealth();
     }
 }
