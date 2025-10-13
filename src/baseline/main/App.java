@@ -47,9 +47,11 @@ public class App {
                 case 5: {
                     System.out.println("Exiting game...");
                     running = false;
+                    break;
                 }
                 default: {
                     System.out.println("Invalid choice! Try again.");
+                    break;
                 }
             }
         }
