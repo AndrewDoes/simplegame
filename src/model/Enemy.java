@@ -3,8 +3,8 @@ package model;
 public class Enemy {
     private String name;
     private int level;
-    private int damage = 10;
-    private int health = 50;
+    private int damage;
+    private int health;
     private String dungeon;
 
     public Enemy(String name, String dungeon, int level, int damage, int health) {
