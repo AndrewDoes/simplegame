@@ -110,7 +110,12 @@ public class App {
         int health = scanner.nextInt();
 
         Enemy enemy;
-        enemy = new Enemy(name, "Asphodel", level, damage, health);
+        enemy = new Enemy.EnemyBuilder(name)
+        .Level(level)
+        .Dungeon("Asphodel")
+        .Damage(damage)
+        .Health(health)
+        .build();
 
         enemies.add(enemy);
         System.out.println("Enemy created successfully: " + enemy.toString());

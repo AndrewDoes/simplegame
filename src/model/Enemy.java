@@ -7,12 +7,43 @@ public class Enemy {
     private int health = 50;
     private String dungeon;
 
-    public Enemy(String name, String dungeon, int level, int damage, int health) {
-        this.level = level;
-        this.name = name;
-        this.dungeon = dungeon;
-        this.damage = damage;
-        this.health = health;
+    private Enemy(EnemyBuilder builder) {
+        this.level = builder.level;
+        this.name = builder.name;
+        this.dungeon = builder.dungeon;
+        this.damage = builder.damage;
+        this.health = builder.health;
+    }
+
+    public static class EnemyBuilder{
+        private String name;
+        private int level;
+        private int damage = 10;
+        private int health = 50;
+        private String dungeon;
+
+        public EnemyBuilder(String name){
+            this.name = name;
+        }
+        public EnemyBuilder Level(int level){
+            this.level = level;
+            return this;
+        }
+        public EnemyBuilder Damage(int damage){
+            this.damage = damage;
+            return this;
+        }
+        public EnemyBuilder Health(int health){
+            this.health = health;
+            return this;
+        }
+        public EnemyBuilder Dungeon(String dungeon){
+            this.dungeon = dungeon;
+            return this;
+        }
+        public Enemy build(){
+            return new Enemy(this);
+        }
     }
 
     public int getLevel() {
