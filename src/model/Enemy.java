@@ -15,6 +15,14 @@ public class Enemy {
         this.health = builder.health;
     }
 
+    public Enemy(String name, String dungeon, int level, int damage, int health) {
+        this.name = name;
+        this.level = level;
+        this.damage = damage;
+        this.health = health;
+        this.dungeon = dungeon;
+    }
+
     public static class EnemyBuilder{
         private String name;
         private int level;

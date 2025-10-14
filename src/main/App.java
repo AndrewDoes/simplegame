@@ -3,7 +3,7 @@ package main;
 import java.util.ArrayList;
 import java.util.Scanner;
 import model.*;
-import test.PerformanceTester;
+import test.BuilderTester;
 
 public class App {
     private static ArrayList<Hero> heroes = new ArrayList<>();
@@ -23,8 +23,9 @@ public class App {
             System.out.println("2. Create Enemy");
             System.out.println("3. Show Status");
             System.out.println("4. Battle!");
-            System.out.println("5. Test Performance");
-            System.out.println("6. Exit");
+            System.out.println("5. View Battle Records");
+            System.out.println("6. Test Performance");
+            System.out.println("7. Exit");
             System.out.print("Choose: ");
 
             int choice = getIntInput();
@@ -46,12 +47,15 @@ public class App {
                     startBattle();
                     break;
                 }
-                case 5:{
-                    PerformanceTester.testHeroCreation();
-                    PerformanceTester.testMemoryUsage();
+                case 5: {
+                    viewBattleRecords();
                     break;
                 }
-                case 6: {
+                case 6:{
+                    BuilderTester.runTest();
+                    break;
+                }
+                case 7: {
                     System.out.println("Exiting game...");
                     running = false;
                     break;
@@ -96,6 +100,13 @@ public class App {
         heroes.add(hero);
 
         System.out.println("Hero created successfully: " + hero.getName());
+    }
+
+    private static void viewBattleRecords() {
+        System.out.println("\n====== Battle Records ======");
+        for (BattleRecord record : battleRecords) {
+            record.printBattleRecord();
+        }
     }
 
     private static void createEnemy() {
