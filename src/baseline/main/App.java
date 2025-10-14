@@ -3,6 +3,7 @@ package baseline.main;
 import java.util.ArrayList;
 import java.util.Scanner;
 import baseline.model.*;
+import baseline.test.PerformanceTester;
 
 public class App {
     private static ArrayList<Hero> heroes = new ArrayList<>();
@@ -22,7 +23,8 @@ public class App {
             System.out.println("2. Create Enemy");
             System.out.println("3. Show Status");
             System.out.println("4. Battle!");
-            System.out.println("5. Exit");
+            System.out.println("5. Test Performance");
+            System.out.println("6. Exit");
             System.out.print("Choose: ");
 
             int choice = getIntInput();
@@ -44,7 +46,12 @@ public class App {
                     startBattle();
                     break;
                 }
-                case 5: {
+                case 5:{
+                    PerformanceTester.testHeroCreation();
+                    PerformanceTester.testMemoryUsage();
+                    break;
+                }
+                case 6: {
                     System.out.println("Exiting game...");
                     running = false;
                     break;
