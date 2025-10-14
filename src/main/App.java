@@ -1,9 +1,13 @@
 package main;
 
+import factories.ArcherFactory;
+import factories.EnemyFactory;
+import factories.FighterFactory;
 import java.util.ArrayList;
 import java.util.Scanner;
 import model.*;
-import test.PerformanceTester;
+import test.EnemyFactoryTester;
+import test.FactoryPatternTester;
 
 public class App {
     private static ArrayList<Hero> heroes = new ArrayList<>();
@@ -47,8 +51,8 @@ public class App {
                     break;
                 }
                 case 5:{
-                    PerformanceTester.testHeroCreation();
-                    PerformanceTester.testMemoryUsage();
+                    FactoryPatternTester.runTest();
+                    EnemyFactoryTester.runTest();
                     break;
                 }
                 case 6: {
@@ -80,11 +84,11 @@ public class App {
 
         switch (type) {
             case 1: {
-                hero = new Archer(name);
+                hero = new ArcherFactory().createHero(name);
                 break;
             }
             case 2: {
-                hero = new Fighter(name);
+                hero = new FighterFactory().createHero(name);
                 break;
             }
             default: {
@@ -109,8 +113,8 @@ public class App {
         System.out.print("Enter enemy health: ");
         int health = scanner.nextInt();
 
-        Enemy enemy;
-        enemy = new Enemy(name, "Asphodel", level, damage, health);
+        EnemyFactory factory = new EnemyFactory();
+        Enemy enemy = factory.createEnemy(name, "Asphodel", level, damage, health);
 
         enemies.add(enemy);
         System.out.println("Enemy created successfully: " + enemy.toString());
@@ -145,7 +149,7 @@ public class App {
     }
 
     private static void startBattle() {
-        if (heroes.size() == 0 || enemies.size() == 0) {
+        if (heroes.isEmpty() || enemies.isEmpty()) {
             System.out.println("No hero or enemy created!");
             return;
         }
