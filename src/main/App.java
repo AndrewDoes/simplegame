@@ -1,9 +1,9 @@
-package baseline.main;
+package main;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-import baseline.model.*;
-import baseline.test.PerformanceTester;
+import model.*;
+import test.PerformanceTester;
 
 public class App {
     private static ArrayList<Hero> heroes = new ArrayList<>();

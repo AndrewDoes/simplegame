@@ -1,4 +1,4 @@
-package baseline.model;
+package model;
 
 public abstract class Hero {
     private String name;

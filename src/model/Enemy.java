@@ -1,4 +1,4 @@
-package baseline.model;
+package model;
 
 public class Enemy {
     private String name;

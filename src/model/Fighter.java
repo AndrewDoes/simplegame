@@ -1,4 +1,4 @@
-package baseline.model;
+package model;
 
 public class Fighter extends Hero {
     public Fighter(String name){

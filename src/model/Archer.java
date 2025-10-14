@@ -1,4 +1,4 @@
-package baseline.model;
+package model;
 
 public class Archer extends Hero {
     private int arrows;
