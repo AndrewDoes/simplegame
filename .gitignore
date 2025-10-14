@@ -1,0 +1,15 @@
+# Compiled class files
+bin/
+out/
+build/
+
+# IDE configuration files
+.vscode/
+.idea/
+
+# Log files
+*.log
+
+# Dependency folders
+lib/
+node_modules/
