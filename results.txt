@@ -1,0 +1,42 @@
+Analysis of Modularity: Baseline vs. Factory Pattern
+
+This document analyzes the qualitative improvements in modularity by comparing the baseline code with the code refactored using the Factory Design Pattern. The primary metrics for this analysis are Coupling and Cohesion.
+
+---
+
+### 1. Coupling (Ketergantungan Antar Kelas)
+
+**Definition:** Coupling measures how dependent one class is on the internal workings of another. The goal is to achieve **Low Coupling**.
+
+**Baseline Code: High Coupling**
+* **Analysis:** The `App` class is tightly coupled to the concrete `Archer` and `Fighter` classes. It directly instantiates them using `new Archer(name)` and `new Fighter(name)`.
+* **Problem:** This creates a rigid system. If a new `Mage` hero class is added, the `App` class itself must be modified to include the new `case` and the `new Mage(name)` instantiation. The `App` class has too much knowledge about how to construct specific hero types.
+
+**Refactored Code (Factory): Low Coupling**
+* **Analysis:** The `App` class is now decoupled from the concrete `Archer` and `Fighter` classes. It only interacts with the `ArcherFactory` and `FighterFactory`.
+* **Improvement:** The `App` class no longer needs to know how to build a specific hero. It delegates this responsibility to a factory. If a `Mage` class is added, only a corresponding `MageFactory` needs to be created. The `App` class does not need to be changed, making the system significantly more flexible and maintainable.
+
+---
+
+### 2. Cohesion (Fokus Tanggung Jawab Kelas)
+
+**Definition:** Cohesion measures how focused a class is on a single, well-defined purpose. The goal is to achieve **High Cohesion**.
+
+**Baseline Code: Low Cohesion**
+* **Analysis:** The `App` class has low cohesion because it has multiple, unrelated responsibilities. It manages the main game loop, handles user input, AND contains the specific logic for creating every type of hero.
+* **Problem:** The class is a "jack-of-all-trades," making it bloated, difficult to understand, and hard to maintain. The game logic is mixed with creation logic.
+
+**Refactored Code (Factory): High Cohesion**
+* **Analysis:** The `App` class now has a much higher cohesion. Its responsibility has been narrowed down to primarily managing the application's flow and user interaction.
+* **Improvement:** The responsibility of object creation has been moved to dedicated factory classes (`ArcherFactory`, `FighterFactory`). Each factory has a single, highly cohesive purpose: to create one type of object. This separation of concerns makes each class simpler and more focused.
+
+---
+
+### Summary Conclusion
+
+The application of the Factory Design Pattern results in a significant and demonstrable improvement in the software's modularity.
+
+* **Coupling is greatly reduced:** The main application logic is no longer dependent on the concrete implementations of the objects it uses.
+* **Cohesion is greatly increased:** Responsibilities are properly separated, with each class now having a single, well-defined purpose.
+
+This leads to a codebase that is more flexible, easier to maintain, and more scalable for future development.
