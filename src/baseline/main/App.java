@@ -177,7 +177,7 @@ public class App {
             hero.attack(enemy);
 
             if (!enemy.isAlive()) {
-                System.out.println("💀 Enemy defeated by " + hero.getName() + "!");
+                System.out.println("Enemy defeated by " + hero.getName() + "!");
                 enemies.remove(enemyChoice);
                 break;
             }
@@ -185,7 +185,7 @@ public class App {
             enemy.attack(hero);
 
             if (!hero.isAlive()) {
-                System.out.println("☠️ " + hero.getName() + " has been defeated...");
+                System.out.println(hero.getName() + " has been defeated...");
                 heroes.remove(heroChoice);
                 break;
             }
@@ -202,9 +202,9 @@ public class App {
 
         System.out.println("\n====== Battle Over ======");
         if (hero.isAlive())
-            System.out.println("🏆 Victory for " + hero.getName() + "!");
+            System.out.println("Victory for " + hero.getName() + "!");
         else
-            System.out.println("💀 Enemy wins!");
+            System.out.println("Enemy wins!");
     }
 
     private static int getIntInput() {
