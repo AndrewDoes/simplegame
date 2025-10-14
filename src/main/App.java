@@ -1,15 +1,20 @@
 package main;
 
+import factories.EnemyFactory;
+import factories.HeroFactory;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import factories.StandardCharacterFactory;
 import model.*;
-import test.PerformanceTester;
+import test.AbstractFactoryPerformanceTester;
 
 public class App {
     private static ArrayList<Hero> heroes = new ArrayList<>();
     private static ArrayList<Enemy> enemies = new ArrayList<>();
     private static ArrayList<BattleRecord> battleRecords = new ArrayList<>();
     private static Scanner scanner = new Scanner(System.in);
+    private static StandardCharacterFactory CharacterFactory = new StandardCharacterFactory();
 
     public static void main(String[] args) {
         boolean running = true;
@@ -52,8 +57,7 @@ public class App {
                     break;
                 }
                 case 6: {
-                    PerformanceTester.testHeroCreation();
-                    PerformanceTester.testMemoryUsage();
+                    AbstractFactoryPerformanceTester.runTest();
                     break;
                 }
                 case 7: {
@@ -87,26 +91,11 @@ public class App {
 
         System.out.print("Enter hero name: ");
         String name = scanner.next();
-
+        
         Hero hero;
-
-        switch (type) {
-            case 1: {
-                hero = new Archer(name);
-                break;
-            }
-            case 2: {
-                hero = new Fighter(name);
-                break;
-            }
-            default: {
-                System.out.println("Invalid hero type!");
-                return;
-            }
-        }
-
+        HeroFactory factory = CharacterFactory.getHeroFactory(type);
+        hero = factory.createHero(name);
         heroes.add(hero);
-
         System.out.println("Hero created successfully: " + hero.getName());
     }
 
@@ -122,7 +111,8 @@ public class App {
         int health = scanner.nextInt();
 
         Enemy enemy;
-        enemy = new Enemy(name, "Asphodel", level, damage, health);
+        EnemyFactory factory = CharacterFactory.getEnemyFactory();
+        enemy = factory.createEnemy(name, "Asphodel", level, damage, health);
 
         enemies.add(enemy);
         System.out.println("Enemy created successfully: " + enemy.toString());
