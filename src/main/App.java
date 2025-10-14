@@ -27,8 +27,9 @@ public class App {
             System.out.println("2. Create Enemy");
             System.out.println("3. Show Status");
             System.out.println("4. Battle!");
-            System.out.println("5. Test Performance");
-            System.out.println("6. Exit");
+            System.out.println("5. View Battle Records");
+            System.out.println("6. Test Performance");
+            System.out.println("7. Exit");
             System.out.print("Choose: ");
 
             int choice = getIntInput();
@@ -50,12 +51,16 @@ public class App {
                     startBattle();
                     break;
                 }
-                case 5:{
+                case 5: {
+                    viewBattleRecords();
+                    break;
+                }
+                case 6: {
                     FactoryPatternTester.runTest();
                     EnemyFactoryTester.runTest();
                     break;
                 }
-                case 6: {
+                case 7: {
                     System.out.println("Exiting game...");
                     running = false;
                     break;
@@ -68,6 +73,13 @@ public class App {
         }
 
         scanner.close();
+    }
+
+    private static void viewBattleRecords() {
+        System.out.println("\n====== Battle Records ======");
+        for (BattleRecord record : battleRecords) {
+            record.printBattleRecord();
+        }
     }
 
     private static void createHero() {
