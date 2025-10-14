@@ -64,6 +64,7 @@ public class Enemy {
         this.dungeon = dungeon;
     }
 
+    @Override
     public String toString(){
         return "Enemy name: " + this.getName() + " | Enemy dungeon: " + this.getDungeon()
                         + " | Enemy Level: " + this.getLevel() + " | HP: " + this.getHealth();

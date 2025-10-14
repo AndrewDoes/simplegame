@@ -50,5 +50,7 @@ public abstract class Hero {
     }
 
     public abstract void attack(Enemy enemy);
+
+    @Override
     public abstract String toString();
 }
