@@ -1,6 +1,6 @@
 package model;
 
-public class Enemy {
+public class Enemy implements Cloneable{
     private String name;
     private int level;
     private int damage = 10;
@@ -62,6 +62,11 @@ public class Enemy {
 
     public void setDungeon(String dungeon) {
         this.dungeon = dungeon;
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 
     @Override

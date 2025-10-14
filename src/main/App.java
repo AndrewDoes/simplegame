@@ -3,7 +3,7 @@ package main;
 import java.util.ArrayList;
 import java.util.Scanner;
 import model.*;
-import test.PerformanceTester;
+import test.PrototypeTester;
 
 public class App {
     private static ArrayList<Hero> heroes = new ArrayList<>();
@@ -52,8 +52,7 @@ public class App {
                     break;
                 }
                 case 6: {
-                    PerformanceTester.testHeroCreation();
-                    PerformanceTester.testMemoryUsage();
+                    PrototypeTester.runTest();
                     break;
                 }
                 case 7: {
@@ -185,8 +184,21 @@ public class App {
 
         Enemy enemy = enemies.get(enemyChoice);
 
-        BattleRecord record = new BattleRecord(enemy, hero);
-        battleRecords.add(record);
+        try {
+            System.out.println("Creating battle record with a snapshot of combatants...");
+
+            // Risky code goes inside the 'try' block
+            Hero heroSnapshot = (Hero) hero.clone();
+            Enemy enemySnapshot = (Enemy) enemy.clone();
+
+            BattleRecord record = new BattleRecord(enemySnapshot, heroSnapshot);
+            battleRecords.add(record);
+
+        } catch (CloneNotSupportedException e) {
+            // This code runs ONLY if the cloning fails.
+            System.out.println("Error: Could not create a snapshot for the battle record.");
+            e.printStackTrace(); // This prints the detailed error message for debugging.
+        }
 
         System.out.println("\n====== Battle Start! ======");
         System.out
