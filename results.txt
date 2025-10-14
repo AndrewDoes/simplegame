@@ -40,3 +40,28 @@ The application of the Factory Design Pattern results in a significant and demon
 * **Cohesion is greatly increased:** Responsibilities are properly separated, with each class now having a single, well-defined purpose.
 
 This leads to a codebase that is more flexible, easier to maintain, and more scalable for future development.
+
+Performance:
+====== FACTORY PATTERN PERFORMANCE TEST ======
+Comparing Baseline (new) vs. Factory Method
+Iterations per test: 10000
+
+--- Testing Archer Creation ---
+Time Result:   Baseline took 0 ms | Factory took 0 ms
+Memory Result: Baseline used 475 KB | Factory used 501 KB
+
+--- Testing Fighter Creation ---
+Time Result:   Baseline took 1 ms | Factory took 1 ms
+Memory Result: Baseline used 482 KB | Factory used 482 KB
+
+====== FACTORY TEST COMPLETE ======
+
+====== ENEMY FACTORY PATTERN PERFORMANCE TEST ======
+Comparing Baseline (new) vs. Factory Method
+Iterations per test: 10000
+
+--- Testing Enemy Creation ---
+Time Result:   Baseline took 0 ms | Factory took 0 ms
+Memory Result: Baseline used 491 KB | Factory used 491 KB
+
+====== ENEMY FACTORY TEST COMPLETE ======
