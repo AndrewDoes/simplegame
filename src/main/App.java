@@ -3,15 +3,35 @@ package main;
 import java.util.ArrayList;
 import java.util.Scanner;
 import model.*;
-import test.PerformanceTester;
+import test.SingletonTester;
 
 public class App {
-    private static ArrayList<Hero> heroes = new ArrayList<>();
-    private static ArrayList<Enemy> enemies = new ArrayList<>();
-    private static ArrayList<BattleRecord> battleRecords = new ArrayList<>();
-    private static Scanner scanner = new Scanner(System.in);
+    private static App instance;
+
+    private ArrayList<Hero> heroes = new ArrayList<>();
+    private ArrayList<Enemy> enemies = new ArrayList<>();
+    private ArrayList<BattleRecord> battleRecords = new ArrayList<>();
+    private Scanner scanner = new Scanner(System.in);
+
+    public App(){ //dibuat Public untuk bisa ditest, untuk Singleton aslinya menggunakan Private
+
+    }
+
+    public static App getInstance() {
+        if (instance == null) {
+            // If the instance doesn't exist yet, create it
+            instance = new App();
+        }
+        // Return the one and only instance
+        return instance;
+    }
 
     public static void main(String[] args) {
+        // It gets the single instance and calls the run method
+        App.getInstance().run();
+    }
+
+    public void run() {
         boolean running = true;
 
         System.out.println("====== Welcome to SIMPLEGAME ======");
@@ -52,8 +72,7 @@ public class App {
                     break;
                 }
                 case 6: {
-                    PerformanceTester.testHeroCreation();
-                    PerformanceTester.testMemoryUsage();
+                    SingletonTester.runTest();
                     break;
                 }
                 case 7: {
@@ -71,14 +90,14 @@ public class App {
         scanner.close();
     }
 
-    private static void viewBattleRecords() {
+    private void viewBattleRecords() {
         System.out.println("\n====== Battle Records ======");
         for (BattleRecord record : battleRecords) {
             record.printBattleRecord();
         }
     }
 
-    private static void createHero() {
+    private void createHero() {
         System.out.println("\n=== Create Your Hero ===");
         System.out.println("1. Archer");
         System.out.println("2. Fighter");
@@ -110,7 +129,7 @@ public class App {
         System.out.println("Hero created successfully: " + hero.getName());
     }
 
-    private static void createEnemy() {
+    private void createEnemy() {
         System.out.println("\n=== Create Enemy ===");
         System.out.print("Enter enemy's name: ");
         String name = scanner.next();
@@ -128,13 +147,13 @@ public class App {
         System.out.println("Enemy created successfully: " + enemy.toString());
     }
 
-    private static void showStatus() {
+    private void showStatus() {
         System.out.println("\n====== Current Status ======");
         displayHeroes();
         displayEnemies();
     }
 
-    private static void displayEnemies() {
+    private void displayEnemies() {
         int i = 1;
         System.out.println("\n========= Enemies =========");
         if (enemies != null) {
@@ -145,7 +164,7 @@ public class App {
             System.out.println("No enemy created.");
     }
 
-    private static void displayHeroes() {
+    private void displayHeroes() {
         int i = 1;
         System.out.println("\n========= Heroes =========");
         if (heroes != null)
@@ -156,7 +175,7 @@ public class App {
             System.out.println("No hero created.");
     }
 
-    private static void startBattle() {
+    private void startBattle() {
         if (heroes.size() == 0 || enemies.size() == 0) {
             System.out.println("No hero or enemy created!");
             return;
@@ -226,7 +245,7 @@ public class App {
             System.out.println("Enemy wins!");
     }
 
-    private static int getIntInput() {
+    private int getIntInput() {
         while (!scanner.hasNextInt()) {
             System.out.print("Enter a valid number: ");
             scanner.next();
