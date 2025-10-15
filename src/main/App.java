@@ -3,7 +3,7 @@ package main;
 import java.util.ArrayList;
 import java.util.Scanner;
 import model.*;
-import test.PerformanceTester;
+import test.HolisticPerformanceTester;
 
 public class App {
     private static ArrayList<Hero> heroes = new ArrayList<>();
@@ -52,8 +52,7 @@ public class App {
                     break;
                 }
                 case 6: {
-                    PerformanceTester.testHeroCreation();
-                    PerformanceTester.testMemoryUsage();
+                    HolisticPerformanceTester.runTest();
                     break;
                 }
                 case 7: {
