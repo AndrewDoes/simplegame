@@ -104,8 +104,8 @@ public class App {
 
     private static void viewBattleRecords() {
         System.out.println("\n====== Battle Records ======");
-        for (BattleRecord record : battleRecords) {
-            record.printBattleRecord();
+        for (BattleRecord battleRecord : battleRecords) {
+            battleRecord.printBattleRecord();
         }
     }
 
@@ -122,10 +122,10 @@ public class App {
 
         Enemy enemy;
         enemy = new Enemy.EnemyBuilder(name)
-        .Level(level)
-        .Dungeon("Asphodel")
-        .Damage(damage)
-        .Health(health)
+        .level(level)
+        .dungeon("Asphodel")
+        .damage(damage)
+        .health(health)
         .build();
 
         enemies.add(enemy);
@@ -161,7 +161,7 @@ public class App {
     }
 
     private static void startBattle() {
-        if (heroes.size() == 0 || enemies.size() == 0) {
+        if (heroes.isEmpty() || enemies.isEmpty()) {
             System.out.println("No hero or enemy created!");
             return;
         }
@@ -189,8 +189,8 @@ public class App {
 
         Enemy enemy = enemies.get(enemyChoice);
 
-        BattleRecord record = new BattleRecord(enemy, hero);
-        battleRecords.add(record);
+        BattleRecord battleRecord = new BattleRecord(enemy, hero);
+        battleRecords.add(battleRecord);
 
         System.out.println("\n====== Battle Start! ======");
         System.out

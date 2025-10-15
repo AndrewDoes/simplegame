@@ -30,10 +30,10 @@ public class BuilderTester {
             
             // Refined Builder: The new version with chained methods for all attributes
             () -> new Enemy.EnemyBuilder("Slime")
-                            .Level(5)
-                            .Damage(10)
-                            .Health(100)
-                            .Dungeon("Cave")
+                            .level(5)
+                            .damage(10)
+                            .health(100)
+                            .dungeon("Cave")
                             .build()
         );
 
