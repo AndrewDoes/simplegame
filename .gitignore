@@ -9,7 +9,9 @@ build/
 
 # Log files
 *.log
+pom.xml
 
 # Dependency folders
 lib/
 node_modules/
+target/
