@@ -1,6 +1,6 @@
 package model;
 
-public class Fighter extends Hero {
+public class Fighter extends Hero{
     public Fighter(String name){
         super(name, 20, 400);
     }

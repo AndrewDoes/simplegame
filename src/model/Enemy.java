@@ -1,18 +1,57 @@
 package model;
 
-public class Enemy {
+public class Enemy implements Cloneable{
     private String name;
     private int level;
     private int damage = 10;
     private int health = 50;
     private String dungeon;
 
-    public Enemy(String name, String dungeon, int level, int damage, int health) {
-        this.level = level;
+    private Enemy(EnemyBuilder builder) {
+        this.level = builder.level;
+        this.name = builder.name;
+        this.dungeon = builder.dungeon;
+        this.damage = builder.damage;
+        this.health = builder.health;
+    }
+
+    public Enemy(String name, String dungeon, int level, int health, int damage) {
         this.name = name;
-        this.dungeon = dungeon;
+        this.level = level;
         this.damage = damage;
         this.health = health;
+        this.dungeon = dungeon;
+    }
+
+    public static class EnemyBuilder{
+        private String name;
+        private int level;
+        private int damage = 10;
+        private int health = 50;
+        private String dungeon;
+
+        public EnemyBuilder(String name){
+            this.name = name;
+        }
+        public EnemyBuilder setLevel(int level){
+            this.level = level;
+            return this;
+        }
+        public EnemyBuilder setDamage(int damage){
+            this.damage = damage;
+            return this;
+        }
+        public EnemyBuilder setHealth(int health){
+            this.health = health;
+            return this;
+        }
+        public EnemyBuilder setDungeon(String dungeon){
+            this.dungeon = dungeon;
+            return this;
+        }
+        public Enemy build(){
+            return new Enemy(this);
+        }
     }
 
     public int getLevel() {
@@ -62,6 +101,10 @@ public class Enemy {
 
     public void setDungeon(String dungeon) {
         this.dungeon = dungeon;
+    }
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return (Enemy) super.clone();
     }
 
     @Override

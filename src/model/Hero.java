@@ -1,6 +1,6 @@
 package model;
 
-public abstract class Hero {
+public abstract class Hero implements Cloneable{
     private String name;
     private int damage;
     private int health;
@@ -53,4 +53,9 @@ public abstract class Hero {
 
     @Override
     public abstract String toString();
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return (Hero) super.clone();
+    }
 }
