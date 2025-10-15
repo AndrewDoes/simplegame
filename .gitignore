@@ -13,3 +13,4 @@ build/
 # Dependency folders
 lib/
 node_modules/
+target/

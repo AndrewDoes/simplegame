@@ -1,0 +1,30 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    
+    <!-- 1. Basic Project Information -->
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.simplegame</groupId>
+    <artifactId>simplegame</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <!-- 2. Project Properties (like Java version) -->
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        
+        <!-- Properties for SonarQube Analysis -->
+        <sonar.projectKey>simplegame-analysis</sonar.projectKey>
+        <sonar.host.url>http://localhost:9000</sonar.host.url>
+        <sonar.sources>src</sonar.sources>
+    </properties>
+
+    <!-- 3. Build Configuration -->
+    <build>
+        <!-- This tells Maven where your source code is located -->
+        <sourceDirectory>src</sourceDirectory>
+    </build>
+
+</project>
