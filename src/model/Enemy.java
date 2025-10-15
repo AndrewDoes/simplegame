@@ -33,19 +33,19 @@ public class Enemy {
         public EnemyBuilder(String name){
             this.name = name;
         }
-        public EnemyBuilder Level(int level){
+        public EnemyBuilder level(int level){
             this.level = level;
             return this;
         }
-        public EnemyBuilder Damage(int damage){
+        public EnemyBuilder damage(int damage){
             this.damage = damage;
             return this;
         }
-        public EnemyBuilder Health(int health){
+        public EnemyBuilder health(int health){
             this.health = health;
             return this;
         }
-        public EnemyBuilder Dungeon(String dungeon){
+        public EnemyBuilder dungeon(String dungeon){
             this.dungeon = dungeon;
             return this;
         }
