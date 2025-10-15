@@ -12,7 +12,7 @@ import java.util.function.Supplier;
  */
 public class PrototypeTester {
 
-    private static final int ITERATIONS = 10000;
+    private static final int ITERATIONS = 1_000_000;
 
     /**
      * Runs the complete suite of tests for the Prototype pattern.
@@ -50,8 +50,13 @@ public class PrototypeTester {
      */
     private static void testCreation(Supplier<Enemy> baselineCreator, Supplier<Enemy> prototypeCloner) {
         // --- TIME TEST ---
-        long baselineTime = measureTime("Baseline", baselineCreator::get);
-        long prototypeTime = measureTime("Prototype", prototypeCloner::get);
+        // Warm-up phase to allow JIT compilation to stabilize
+        measureTime("Warm-up", baselineCreator::get, 10000); // Warm-up with fewer iterations
+        measureTime("Warm-up", prototypeCloner::get, 10000);
+
+        // Actual timed runs with the full iteration count
+        long baselineTime = measureTime("Baseline", baselineCreator::get, ITERATIONS);
+        long prototypeTime = measureTime("Prototype", prototypeCloner::get, ITERATIONS);
         System.out.printf("Time Result:   Baseline took %d ms | Prototype took %d ms%n", baselineTime, prototypeTime);
 
         // --- MEMORY TEST ---
@@ -64,13 +69,17 @@ public class PrototypeTester {
     //  Generic Measurement Utilities (Consistent with other testers)
     // ===================================================================
 
-    private static long measureTime(String label, Runnable operation) {
+    private static long measureTime(String label, Runnable operation, int iterations) {
         long startTime = System.nanoTime();
-        for (int i = 0; i < ITERATIONS; i++) {
+        for (int i = 0; i < iterations; i++) {
             operation.run();
         }
         long endTime = System.nanoTime();
-        return (endTime - startTime) / 1_000_000;
+        // Don't print warm-up runs to keep the output clean
+        if (!label.equals("Warm-up")) {
+            return (endTime - startTime) / 1_000_000;
+        }
+        return 0;
     }
 
     private static long measureMemory(String label, Supplier<Enemy> creator) {
