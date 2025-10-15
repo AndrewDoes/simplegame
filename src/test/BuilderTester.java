@@ -13,14 +13,14 @@ import java.util.function.Supplier;
  */
 public class BuilderTester {
 
-    private static final int ITERATIONS = 10000;
+    private static final int ITERATIONS = 1000000;
 
     /**
      * Runs the complete suite of tests for the Builder pattern and prints the results.
      */
     public static void runTest() {
         System.out.println("====== FULLY FLUENT BUILDER PATTERN PERFORMANCE TEST ======");
-        System.out.println("Comparing Baseline (new) vs. Fully Fluent Builder Method");
+        System.out.println("Comparing Baseline vs. w/ Builder Method");
         System.out.println("Iterations per test: " + ITERATIONS + "\n");
 
         System.out.println("--- Testing Enemy Creation ---");
@@ -46,8 +46,13 @@ public class BuilderTester {
      */
     private static void testCreation(Supplier<Enemy> baselineCreator, Supplier<Enemy> builderCreator) {
         // --- TIME TEST ---
-        long baselineTime = measureTime("Baseline", baselineCreator::get);
-        long builderTime = measureTime("Builder", builderCreator::get);
+        // Warm-up phase to allow JIT compilation to stabilize
+        measureTime("Warm-up", baselineCreator::get, 1000); // Warm-up with fewer iterations
+        measureTime("Warm-up", builderCreator::get, 1000);
+
+        // Actual timed runs with the full iteration count
+        long baselineTime = measureTime("Baseline", baselineCreator::get, ITERATIONS);
+        long builderTime = measureTime("Builder", builderCreator::get, ITERATIONS);
         System.out.printf("Time Result:   Baseline took %d ms | Builder took %d ms%n", baselineTime, builderTime);
 
         // --- MEMORY TEST ---
@@ -60,13 +65,17 @@ public class BuilderTester {
     //  Generic Measurement Utilities
     // ===================================================================
 
-    private static long measureTime(String label, Runnable operation) {
+    private static long measureTime(String label, Runnable operation, int iterations) {
         long startTime = System.nanoTime();
-        for (int i = 0; i < ITERATIONS; i++) {
+        for (int i = 0; i < iterations; i++) {
             operation.run();
         }
         long endTime = System.nanoTime();
-        return (endTime - startTime) / 1_000_000;
+        // Don't print warm-up runs to keep the output clean
+        if (!label.equals("Warm-up")) {
+            return (endTime - startTime) / 1_000_000;
+        }
+        return 0;
     }
 
     private static long measureMemory(String label, Supplier<Enemy> creator) {
