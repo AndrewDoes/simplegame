@@ -1,11 +1,9 @@
 package test;
 
 import factories.CharacterFactory;
-import factories.EnemyFactory;
 import factories.HeroFactory;
 import factories.StandardCharacterFactory;
 import model.Archer;
-import model.Enemy;
 import model.Fighter;
 
 import java.util.ArrayList;
@@ -49,16 +47,6 @@ public class AbstractFactoryPerformanceTester {
             () -> {
                 HeroFactory heroFactory = mainFactory.getHeroFactory(2); // 2 for Fighter
                 return heroFactory.createHero("Test");
-            }
-        );
-
-        // --- Test Enemy Creation ---
-        System.out.println("--- Testing Enemy Creation ---");
-        testCreation(
-            () -> new Enemy("Test", "Dungeon", 1, 10, 100),
-            () -> {
-                EnemyFactory enemyFactory = mainFactory.getEnemyFactory();
-                return enemyFactory.createEnemy("Test", "Dungeon", 1, 10, 100);
             }
         );
 

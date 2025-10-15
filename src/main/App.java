@@ -111,7 +111,7 @@ public class App {
         int health = scanner.nextInt();
 
         Enemy enemy;
-        EnemyFactory factory = CharacterFactory.getEnemyFactory();
+        EnemyFactory factory = new EnemyFactory();
         enemy = factory.createEnemy(name, "Asphodel", level, damage, health);
 
         enemies.add(enemy);

@@ -13,10 +13,4 @@ public class StandardCharacterFactory implements CharacterFactory {
                 return null;
         }
     }
-
-    @Override
-    public EnemyFactory getEnemyFactory() {
-        return new EnemyFactory();
-    }
-    
 }
