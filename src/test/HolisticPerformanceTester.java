@@ -38,14 +38,14 @@ public class HolisticPerformanceTester {
             executeBattle(game.heroes.get(i), game.enemies.get(i), game.battleRecords);
         }
 
-        // Let's also verify the number of records to prove the battles ran
-        System.out.printf("Final state: %d heroes, %d enemies, %d battle records.%n", game.heroes.size(),
-                game.enemies.size(), game.battleRecords.size());
 
         long endTime = System.nanoTime();
         long duration = (endTime - startTime) / 1_000_000;
         long memoryAfter = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
         long memoryUsed = (memoryAfter - memoryBefore) / 1024; // Convert bytes to KB
+        // Let's also verify the number of records to prove the battles ran
+        System.out.printf("Final state: %d heroes, %d enemies, %d battle records.%n", game.heroes.size(),
+                game.enemies.size(), game.battleRecords.size());
         System.out.println("\n====== HOLISTIC TEST COMPLETE ======");
         System.out.printf("Time Result:   The full simulation with console output took %d ms.%n", duration);
         System.out.printf("Memory Result: The net memory change after the test was %d KB.%n", memoryUsed);
